@@ -1,0 +1,101 @@
+body {
+  padding: 0 4rem;
+}
+
+/* ----------- HEADER ----------- */
+
+header {
+  display: flex;
+  justify-content: space-between;
+  padding: 1rem 0;
+  border-bottom: 1px solid rgb(213, 214, 206);
+  align-items: center;
+}
+
+.brand {
+  font-weight: 700;
+}
+
+.brand-logo {
+  display: inline-block;
+  transform: rotate(15deg);
+  margin-right: 0.3rem;
+}
+
+.brand-dot {
+  font-weight: 800;
+  font-size: 1.3rem;
+  color: rgb(237, 105, 71);
+}
+
+.label {
+  font-size: 0.8rem;
+  text-transform: uppercase;
+}
+
+.status {
+  display: inline-block;
+  margin-right: 0.5rem;
+  height: 0.6rem;
+  width: 0.6rem;
+  border-radius: 0.3rem;
+  background-color: rgb(237, 105, 71);
+}
+
+/* ----------- HERO ----------- */
+
+.hero {
+  display: flex;
+  justify-content: space-between;
+  padding: 2rem 0;
+}
+
+.recall {
+  text-transform: uppercase;
+  color: rgb(237, 105, 71);
+  letter-spacing: 1.1px;
+  font-size: 0.9rem;
+}
+
+h1 {
+  font-size: 5rem;
+  line-height: 0.98;
+  margin: 1.3rem 0 2rem 0;
+  font-weight: 800;
+}
+
+h1 span {
+  color: rgb(237, 105, 71);
+}
+
+.intro{
+  width: 70%;
+}
+
+.score-card {
+  display: flex;
+  align-items: flex-end;
+  padding-bottom: 1rem;
+  font-size: 0.8rem;
+}
+
+.score-seperator {
+  width: 2px;
+  background-color: rgb(213, 214, 206);
+  height: 4rem;
+  margin: 0 1rem 0.2rem 1rem;
+}
+
+.score-item div {
+  text-transform: uppercase;
+  font-size: 0.8rem;
+  width: 110px;
+  text-align: center;
+}
+
+.score-item strong{
+  display: block;
+  text-align: center;
+  font-size: 2rem;
+}
+
