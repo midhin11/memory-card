@@ -4,6 +4,9 @@ let accents = ["#F5B84B", "#F2876D", "#72C5B6", "#8795E8", "#D79ACB", "#E5A85B",
 let cardCounts = {easy: 8, medium: 12, hard:16}
 
 export default function GameArea({difficulty, setDifficulty, currScore, setCurrScore, bestScore, setBestScore}) {
+    const [isLoading, setLoading] = useState(true)
+    const [error, setError] = useState(null)
+
     const [cards, setCards] = useState([])
     const [gameCards, setGameCards] = useState([])
     const [clicked, setClicked] = useState([])
@@ -40,33 +43,43 @@ export default function GameArea({difficulty, setDifficulty, currScore, setCurrS
 
     useEffect(() => {
         async function fetchData() {
-            const response = await fetch("https://pokeapi.co/api/v2/pokemon?limit=16")
-            const returnedData = await response.json()
-            const fetchedCards = await Promise.all(returnedData.results.map(
-                async (pokemon, index) => {
-                    const detailsResponse = await fetch(pokemon.url)
-                    const details = await detailsResponse.json()
-                    console.log(details)
-                    console.log(details.sprites.other["official-artwork"].front_default);
-                    return {
-                        id: details.id,
-                        name: details.name,
-                        image: details.sprites.other["official-artwork"].front_default,
-                        accent: accents[index % accents.length]
+            try {
+                const response = await fetch("https://pokeapi.co/api/v2/pokemon?limit=16")
+                const returnedData = await response.json()
+                const fetchedCards = await Promise.all(returnedData.results.map(
+                    async (pokemon, index) => {
+                        const detailsResponse = await fetch(pokemon.url)
+                        const details = await detailsResponse.json()
+                        console.log(details)
+                        console.log(details.sprites.other["official-artwork"].front_default);
+                        return {
+                            id: details.id,
+                            name: details.name,
+                            image: details.sprites.other["official-artwork"].front_default,
+                            accent: accents[index % accents.length]
+                        }
                     }
-                }
-            ))
-            setCards(fetchedCards);
-            setGameCards(fetchedCards.slice(0, cardCounts[difficulty]))
+                ))
+                setCards(fetchedCards);
+                setGameCards(fetchedCards.slice(0, cardCounts[difficulty]))
+            } catch (error) {
+                setError(error)
+            } finally {
+                setLoading(false)
+            }
         }
+
         fetchData()
     }, [])
      
     return(
         <section className="game-area">
             <GameTools difficulty={difficulty} handleDifficultyChange={handleDifficultyChange}/>
-            <CardGrid difficulty={difficulty} cards={cards}
-            gameCards={gameCards} setGameCards={setGameCards} handleCardClick={handleCardClick}/>
+            <CardGrid 
+                difficulty={difficulty} 
+                cards={cards} 
+                gameCards={gameCards} setGameCards={setGameCards} handleCardClick={handleCardClick} 
+                isLoading={isLoading} error={error}/>
         </section>
     )
 }
@@ -99,7 +112,7 @@ function GameTools({difficulty, handleDifficultyChange}) {
     )
 }
 
-function CardGrid({ difficulty, gameCards, handleCardClick }) {
+function CardGrid({ difficulty, gameCards, handleCardClick, isLoading, error }) {
     let cardClass = "cards-easy"
     if (difficulty === "medium") {cardClass = "cards-medium"}
     if (difficulty === "hard") {cardClass = "cards-hard"}
@@ -117,6 +130,14 @@ function CardGrid({ difficulty, gameCards, handleCardClick }) {
             </div>
         </button>
     ))
+
+    if(isLoading) {
+        return <div className="loading">Loading cards...</div>
+    }
+
+    if (error) {
+        return <div>Failed to load cards.</div>;
+    }
 
     return (
         <div className={`card-grid ${cardClass}`}>
