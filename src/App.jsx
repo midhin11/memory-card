@@ -1,10 +1,19 @@
-// import { useState } from 'react'
-import GamePage from "./Components/GamePage.jsx"
+import Header from "./Components/Header.jsx"
+import Hero from "./Components/Hero.jsx"
+import GameArea from "./Components/GameArea.jsx"
+import Footer from "./Components/Footer.jsx"
+import "./App.css"
 
-import './App.css'
-
-export default function App() {
+export default function GamePage() {
   return(
-    <GamePage/>
+    <div className="game-page">
+      <Header/>
+      <Hero/>
+      <GameArea/>
+      <Footer/>
+    </div>
   )
 }
+
+
+

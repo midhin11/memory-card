@@ -130,20 +130,48 @@ h1 span {
   align-items: flex-end;
 }
 
-.difficulty {
+.difficulty-mode {
   display: flex;
   gap: 1rem;
 }
 
-.difficulty > * {
-  border: 1px solid black;
+.difficulty-mode > * {
+  border: 1px solid transparent;
   border-radius: 1rem;
   padding: 0.3rem 0.8rem;
   cursor: pointer;
 }
 
+.difficulty-mode > *:hover {
+  border: 1px solid black;
+}
+
+.selected {
+  border: 1px solid black;
+}
+
 .hint {
   font-size: 0.8rem;
+}
+
+.card-grid {
+  display: grid;
+  grid-template-columns: repeat(8, 1fr);
+  gap: 12px
+}
+
+.memory-card {
+  border: none;
+  padding: 0;
+  background-color: var(--gray-primary);
+  cursor: pointer;
+  
+  transform-origin: bottom left;
+  transition: transform 0.4s ease;
+}
+
+.memory-card:hover {
+  transform: translateY(-8px) rotate(-1deg);
 }
 
 /* ----------- FOOTER ----------- */
