@@ -3,7 +3,7 @@ import { useState, useEffect } from "react";
 let accents = ["#F5B84B", "#F2876D", "#72C5B6", "#8795E8", "#D79ACB", "#E5A85B", "#77B9D7", "#B6C86A"]
 let cardCounts = {easy: 8, medium: 12, hard:16}
 
-export default function GameArea({difficulty, setDifficulty, currScore, setCurrScore, bestScore, setBestScore}) {
+export default function GameArea({difficulty, setDifficulty, currScore, setCurrScore, bestScore, setBestScore, setGameState}) {
     const [isLoading, setLoading] = useState(true)
     const [error, setError] = useState(null)
 
@@ -25,7 +25,7 @@ export default function GameArea({difficulty, setDifficulty, currScore, setCurrS
         setGameCards(shuffle(gameCards))
         if (clicked.includes(id)){
             setClicked([])
-            setCurrScore(0)
+            setGameState("loss")
             return
         } 
   
@@ -39,6 +39,12 @@ export default function GameArea({difficulty, setDifficulty, currScore, setCurrS
                 [difficulty]: nextScore
             })
         }  
+
+        const nextClicked = [...clicked, id]
+        if (nextClicked.length === cardCounts[difficulty]){
+            setGameState("win")
+            setClicked([])
+        }
     }
 
     useEffect(() => {
@@ -50,8 +56,6 @@ export default function GameArea({difficulty, setDifficulty, currScore, setCurrS
                     async (pokemon, index) => {
                         const detailsResponse = await fetch(pokemon.url)
                         const details = await detailsResponse.json()
-                        console.log(details)
-                        console.log(details.sprites.other["official-artwork"].front_default);
                         return {
                             id: details.id,
                             name: details.name,
