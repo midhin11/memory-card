@@ -1,4 +1,6 @@
 import { useState, useEffect } from "react";
+import GameTools from "./GameTools.jsx";
+import CardGrid from "./CardGrid.jsx";
 
 let accents = ["#F5B84B", "#F2876D", "#72C5B6", "#8795E8", "#D79ACB", "#E5A85B", "#77B9D7", "#B6C86A"]
 let cardCounts = {easy: 8, medium: 12, hard:16}
@@ -85,68 +87,6 @@ export default function GameArea({difficulty, setDifficulty, currScore, setCurrS
                 gameCards={gameCards} setGameCards={setGameCards} handleCardClick={handleCardClick} 
                 isLoading={isLoading} error={error}/>
         </section>
-    )
-}
-
-
-function GameTools({difficulty, handleDifficultyChange}) {
-    return (
-        <div className="game-tools">
-            <div className="difficulty-mode">
-                <button 
-                className={`easy-mode ${difficulty === "easy" ? "selected" : ""}`}  
-                onClick={() => handleDifficultyChange("easy")}>
-                    Easy<span>8</span>
-                </button> 
-
-                <button 
-                className={`medium-mode ${difficulty === "medium" ? "selected" : ""}`}  
-                onClick={() => handleDifficultyChange("medium")}>
-                    Medium<span>12</span>
-                </button> 
-                
-                <button 
-                className={`hard-mode ${difficulty === "hard" ? "selected" : ""}`}  
-                onClick={() => handleDifficultyChange("hard")}>
-                    Hard<span>16</span>
-                </button> 
-            </div>
-            <div className="hint">Pick a card. Remember it. Don't repeat it.</div>
-        </div>
-    )
-}
-
-function CardGrid({ difficulty, gameCards, handleCardClick, isLoading, error }) {
-    let cardClass = "cards-easy"
-    if (difficulty === "medium") {cardClass = "cards-medium"}
-    if (difficulty === "hard") {cardClass = "cards-hard"}
-
-    let cardstoDisplay  = gameCards.map((card) => (
-        <button key={card.id} 
-        className="memory-card" 
-        onClick={() => handleCardClick(card.id)}>
-            <div className="card-art" style={{backgroundColor: card.accent}}>
-                <img src={card.image} alt={card.name} />
-            </div>
-            <div className="card-caption">
-                <span>{card.name}</span>
-                <span className="arrow">↗</span>
-            </div>
-        </button>
-    ))
-
-    if(isLoading) {
-        return <div className="loading">Loading cards...</div>
-    }
-
-    if (error) {
-        return <div className="error">Failed to load cards.</div>;
-    }
-
-    return (
-        <div className={`card-grid ${cardClass}`}>
-            {cardstoDisplay}
-        </div>
     )
 }
 

@@ -10,7 +10,7 @@ export default function Modal({gameState, setGameState, currScore, setCurrScore}
                 <div className="result-header">Round complete</div>
                 {gameState === "win" ?
                     <div className="result">You remembered them all</div> :
-                    <div className="result">You scored {currScore} points.</div>
+                    <div className="result">You scored {currScore} {currScore === 1 ? "point" : "points"}.</div>
                 }
                 {gameState === "loss" ?
                     <p>The board got the better of you this time.</p> :
