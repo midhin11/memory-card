@@ -6,13 +6,27 @@ import "./App.css"
 import { useState } from "react"
 
 export default function GamePage() {
+  const [difficulty, setDifficulty] = useState("easy")
   const [currScore, setCurrScore] = useState(0)
+  const [bestScore, setBestScore] = useState({
+    easy: 0,
+    medium: 0,
+    hard: 0
+  })
 
   return(
     <div className="game-page">
       <Header/>
-      <Hero currScore={currScore}/>
-      <GameArea currScore={currScore} setCurrScore={setCurrScore}/>
+      <Hero 
+        difficulty={difficulty} 
+        currScore={currScore} 
+        bestScore={bestScore}
+      />
+      <GameArea 
+        difficulty={difficulty} setDifficulty={setDifficulty}
+        currScore={currScore} setCurrScore={setCurrScore}
+        bestScore={bestScore} setBestScore={setBestScore}
+      />
       <Footer/>
     </div>
   )

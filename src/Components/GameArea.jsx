@@ -3,8 +3,7 @@ import { useState, useEffect } from "react";
 let accents = ["#F5B84B", "#F2876D", "#72C5B6", "#8795E8", "#D79ACB", "#E5A85B", "#77B9D7", "#B6C86A"]
 let cardCounts = {easy: 8, medium: 12, hard:16}
 
-export default function GameArea({currScore, setCurrScore}) {
-    const [difficulty, setDifficulty] = useState("easy")
+export default function GameArea({difficulty, setDifficulty, currScore, setCurrScore, bestScore, setBestScore}) {
     const [cards, setCards] = useState([])
     const [gameCards, setGameCards] = useState([])
     const [clicked, setClicked] = useState([])
@@ -16,6 +15,7 @@ export default function GameArea({currScore, setCurrScore}) {
         setGameCards(cards.slice(0, count))
 
         setClicked([])
+        setCurrScore(0)
     }
 
     function handleCardClick(id) {
@@ -25,8 +25,17 @@ export default function GameArea({currScore, setCurrScore}) {
             setCurrScore(0)
             return
         } 
+  
         setClicked([...clicked, id])
         setCurrScore(currScore + 1)
+        
+        const nextScore = currScore + 1
+        if (nextScore >= bestScore[difficulty]){
+            setBestScore({
+                ...bestScore,
+                [difficulty]: nextScore
+            })
+        }  
     }
 
     useEffect(() => {
@@ -53,7 +62,6 @@ export default function GameArea({currScore, setCurrScore}) {
         fetchData()
     }, [])
      
-
     return(
         <section className="game-area">
             <GameTools difficulty={difficulty} handleDifficultyChange={handleDifficultyChange}/>
@@ -62,6 +70,7 @@ export default function GameArea({currScore, setCurrScore}) {
         </section>
     )
 }
+
 
 function GameTools({difficulty, handleDifficultyChange}) {
     return (

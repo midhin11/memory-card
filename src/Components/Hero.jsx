@@ -1,4 +1,8 @@
-export default function Hero({currScore}) {
+export default function Hero({difficulty, currScore, bestScore}) {
+  let best = bestScore.easy;
+  if (difficulty === "medium") {best = bestScore.medium}
+  if (difficulty === "hard") {best = bestScore.hard}
+
   return(
     <section className="hero">
       <div className='hero-text'>
@@ -14,7 +18,7 @@ export default function Hero({currScore}) {
         <div className="score-seperator"></div>
         <div className='score-item'>
           <div>Best Score</div>
-          <strong>0</strong>
+          <strong>{best}</strong>
         </div>
       </div>
     </section>
