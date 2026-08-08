@@ -44,7 +44,7 @@ export default function GameArea({difficulty, setDifficulty, currScore, setCurrS
     useEffect(() => {
         async function fetchData() {
             try {
-                const response = await fetch("fsil")
+                const response = await fetch("https://pokeapi.co/api/v2/pokemon?limit=16")
                 const returnedData = await response.json()
                 const fetchedCards = await Promise.all(returnedData.results.map(
                     async (pokemon, index) => {
