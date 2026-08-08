@@ -1,10 +1,19 @@
 import { useState, useEffect } from "react";
 
 let accents = ["#F5B84B", "#F2876D", "#72C5B6", "#8795E8", "#D79ACB", "#E5A85B", "#77B9D7", "#B6C86A"]
+let cardCounts = {easy: 8, medium: 12, hard:16}
 
 export default function GameArea() {
     const [difficulty, setDifficulty] = useState("easy")
     const [cards, setCards] = useState([])
+    const [gameCards, setGameCards] = useState([])
+
+
+    function handleDifficultyChange(newDifficulty) {
+        setDifficulty(newDifficulty)
+        const count = cardCounts[newDifficulty]
+        setGameCards(cards.slice(0, count))
+    }
 
     useEffect(() => {
         async function fetchData() {
@@ -25,37 +34,40 @@ export default function GameArea() {
                 }
             ))
             setCards(fetchedCards);
+            setGameCards(fetchedCards.slice(0, cardCounts[difficulty]))
         }
         fetchData()
     }, [])
+     
 
     return(
         <section className="game-area">
-            <GameTools difficulty={difficulty} setDifficulty={setDifficulty}/>
-            <CardGrid difficulty={difficulty} cards={cards}/>
+            <GameTools difficulty={difficulty} handleDifficultyChange={handleDifficultyChange}/>
+            <CardGrid difficulty={difficulty} cards={cards}
+            gameCards={gameCards} setGameCards={setGameCards}/>
         </section>
     )
 }
 
-function GameTools({difficulty, setDifficulty}) {
+function GameTools({difficulty, handleDifficultyChange}) {
     return (
         <div className="game-tools">
             <div className="difficulty-mode">
                 <button 
                 className={`easy-mode ${difficulty === "easy" ? "selected" : ""}`}  
-                onClick={() => setDifficulty("easy")}>
+                onClick={() => handleDifficultyChange("easy")}>
                     Easy
                 </button> 
 
                 <button 
                 className={`medium-mode ${difficulty === "medium" ? "selected" : ""}`}  
-                onClick={() => setDifficulty("medium")}>
+                onClick={() => handleDifficultyChange("medium")}>
                     Medium
                 </button> 
                 
                 <button 
                 className={`hard-mode ${difficulty === "hard" ? "selected" : ""}`}  
-                onClick={() => setDifficulty("hard")}>
+                onClick={() => handleDifficultyChange("hard")}>
                     Hard
                 </button> 
             </div>
@@ -64,26 +76,21 @@ function GameTools({difficulty, setDifficulty}) {
     )
 }
 
-function CardGrid({ difficulty, cards }) {
+function CardGrid({ difficulty, gameCards, setGameCards }) {
     let cardClass = "cards-easy"
     if (difficulty === "medium") {cardClass = "cards-medium"}
     if (difficulty === "hard") {cardClass = "cards-hard"}
 
-    let cardCounts = {
-        easy: 8,
-        medium: 12,
-        hard: 16
-    }
-    let count = cardCounts[difficulty];
-    let cardsSliced = cards.slice(0, count)
-
-    let cardstoDisplay  = cardsSliced.map((card) => (
-        <button key={card.id} className="memory-card">
+    let cardstoDisplay  = gameCards.map((card) => (
+        <button key={card.id} 
+        className="memory-card" 
+        onClick={() => setGameCards(shuffle(gameCards))}>
             <div className="card-art" style={{backgroundColor: card.accent}}>
                 <img src={card.image} alt={card.name} />
             </div>
             <div className="card-caption">
-                {card.name}<span>↗</span>
+                <span>{card.name}</span>
+                <span className="arrow">↗</span>
             </div>
         </button>
     ))
@@ -93,4 +100,13 @@ function CardGrid({ difficulty, cards }) {
             {cardstoDisplay}
         </div>
     )
+}
+
+function shuffle(array) {
+    const shuffled = [...array];
+    for (let i = shuffled.length - 1; i > 0; i--) {
+        const j = Math.floor(Math.random() * (i + 1));
+        [shuffled[i], shuffled[j]] = [shuffled[j], shuffled[i]];
+    }
+    return shuffled;
 }

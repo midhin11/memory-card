@@ -140,6 +140,7 @@ h1 span {
   border-radius: 1rem;
   padding: 0.3rem 0.8rem;
   cursor: pointer;
+  transition: border 0.5s ease;
 }
 
 .difficulty-mode > *:hover {
@@ -156,11 +157,11 @@ h1 span {
 
 .card-grid {
   display: grid;
-  gap: 12px
+  gap: 1rem;
 }
 
 .cards-easy {
-  grid-template-columns: repeat(4, 1fr);
+  grid-template-columns: repeat(8, 1fr);
 }
 
 .cards-medium {
@@ -202,6 +203,15 @@ h1 span {
 
 .card-caption {
   padding: 8px 4px;
+  text-transform: capitalize;
+  font-size: 0.8rem;
+  font-weight: 500;
+  display: flex;
+  justify-content: space-between;
+}
+
+.arrow {
+  color: var(--gray-tertiary);
 }
 
 /* ----------- FOOTER ----------- */
