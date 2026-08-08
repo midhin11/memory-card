@@ -10,7 +10,22 @@ export default function GamePage() {
 }
 
 function GameArea() {
+  return(
+    <section className="game-area">
+      <div className="game-tools">
+        <div className="difficulty">
+          <button>Easy</button>
+          <button>Medium</button>
+          <button>Hard</button>
+        </div>
+        <div className="hint">Pick a card. Remember it. Don't repeat it.</div>
+      </div>
 
+      <div className="card-grid">
+        
+      </div>
+    </section>
+  )
 }
 
 function Footer() {

@@ -1,13 +1,16 @@
 body {
   padding: 0 4rem;
   background-color: rgb(245, 244, 239);
+  color: var(--black);
 }
 
 :root {
+  --black: rgb(23, 35, 31);
   --gray-primary: rgb(103, 113, 109);
   --gray-secondary: rgb(126, 135, 130);
   --gray-tertiary: rgb(147, 155, 150);
   --orange: rgb(237, 105, 71);
+  --border-seperator: rgb(213, 214, 206);
 }
 
 /* ----------- HEADER ----------- */
@@ -16,7 +19,7 @@ header {
   display: flex;
   justify-content: space-between;
   padding: 1rem 0;
-  border-bottom: 1px solid rgb(213, 214, 206);
+  border-bottom: 1px solid var(--border-seperator);
   align-items: center;
 }
 
@@ -58,7 +61,8 @@ header {
 .hero {
   display: flex;
   justify-content: space-between;
-  padding: 2rem 0;
+  padding: 3.5rem 0;
+  border-bottom: 1px solid var(--border-seperator);
 }
 
 .recall {
@@ -114,6 +118,33 @@ h1 span {
 
 /* ----------- GAME AREA ----------- */
 
+.game-area {
+  padding-top: 1.25rem;
+}
+
+.game-tools {
+  display: flex;
+  justify-content: space-between;
+  color: var(--gray-primary);
+  margin-bottom: 1.5rem;
+  align-items: flex-end;
+}
+
+.difficulty {
+  display: flex;
+  gap: 1rem;
+}
+
+.difficulty > * {
+  border: 1px solid black;
+  border-radius: 1rem;
+  padding: 0.3rem 0.8rem;
+  cursor: pointer;
+}
+
+.hint {
+  font-size: 0.8rem;
+}
 
 /* ----------- FOOTER ----------- */
 
@@ -123,6 +154,7 @@ h1 span {
   font-size: 0.8rem;
   text-transform: uppercase;
   color: var(--gray-secondary);
+  padding: 2.5rem 0 1.5rem 0;
 }
 
 .footer-credit b {
@@ -140,6 +172,7 @@ h1 span {
 .footer-links a {
   text-decoration: none;
   color: var(--gray-primary);
+  transition: color 0.3s ease;
 }
 
 .footer-links a:hover {
