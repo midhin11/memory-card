@@ -44,7 +44,7 @@ export default function GameArea({difficulty, setDifficulty, currScore, setCurrS
     useEffect(() => {
         async function fetchData() {
             try {
-                const response = await fetch("https://pokeapi.co/api/v2/pokemon?limit=16")
+                const response = await fetch("fsil")
                 const returnedData = await response.json()
                 const fetchedCards = await Promise.all(returnedData.results.map(
                     async (pokemon, index) => {
@@ -136,7 +136,7 @@ function CardGrid({ difficulty, gameCards, handleCardClick, isLoading, error }) 
     }
 
     if (error) {
-        return <div>Failed to load cards.</div>;
+        return <div className="error">Failed to load cards.</div>;
     }
 
     return (

@@ -214,6 +214,25 @@ h1 span {
   color: var(--gray-tertiary);
 }
 
+.loading,
+.error {
+  min-height: 20rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 1rem;
+  font-weight: 500;
+  letter-spacing: 0.02em;
+}
+
+.loading {
+  color: rgb(120, 129, 125);
+}
+
+.error {
+  color: rgb(103, 113, 109);
+}
+
 /* ----------- FOOTER ----------- */
 
 .footer {
