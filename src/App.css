@@ -244,7 +244,7 @@ h1 span {
   color: rgb(103, 113, 109);
 }
 
-.label, .recall, .score-item > div, .footer-credit, .footer-ins {
+.label, .recall, .score-item > div, .footer-credit, .footer-ins, .result-header {
   font-family: 'DM Mono', Courier, monospace;
 }
 
@@ -288,6 +288,76 @@ h1 span {
   color: var(--orange);
 }
 
+/* ----------- MODAL ----------- */
+
+.modal-backdrop {
+  position: fixed;
+  inset: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: rgba(23, 35, 31, 0.65);
+  backdrop-filter: blur(6px);
+  z-index: 100;
+}
+
+.modal {
+  width: min(90%, 27rem);
+  padding: 2rem;
+  background: rgb(250, 250, 246);
+  color: var(--black);
+  border: 1px solid var(--border-seperator);
+  border-radius: 1.25rem;
+  box-shadow: 10px 10px 30px rgba(23, 35, 31);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.6rem;
+}
+
+.result-header {
+  color: var(--orange);
+  font-size: 0.8rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  font-weight: 400;
+}
+
+.result {
+  color: var(--black);
+  font-size: 2rem;
+  font-weight: 700;
+}
+
+.modal p {
+  color: var(--gray-primary);
+  margin: 0.2rem 0 0.8rem 0;
+}
+
+.restart-btn {
+  border: none;
+  padding: 0.6rem 1rem;
+  background: var(--black);
+  color: white;
+  font: inherit;
+  font-weight: 600;
+  cursor: pointer;
+  transition: transform 0.2s ease;
+  align-self: center;
+}
+
+.restart-btn:hover {
+  transform: translateY(-2px);
+}
+
+.restart-btn span {
+  color: rgb(245, 184, 75);
+  margin-left: 0.4rem;
+}
+
+
+/* ----------- RESPONSIVE ----------- */
 
 @media (max-width: 850px) {
   body {

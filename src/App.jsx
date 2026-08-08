@@ -7,7 +7,7 @@ import "./App.css"
 import { useState } from "react"
 
 export default function GamePage() {
-  const [gameState, setGameState] = useState("playing")
+  const [gameState, setGameState] = useState("win")
   const [difficulty, setDifficulty] = useState("easy")
   const [currScore, setCurrScore] = useState(0)
   const [bestScore, setBestScore] = useState({
