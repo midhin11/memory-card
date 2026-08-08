@@ -1,5 +1,13 @@
 body {
   padding: 0 4rem;
+  background-color: rgb(245, 244, 239);
+}
+
+:root {
+  --gray-primary: rgb(103, 113, 109);
+  --gray-secondary: rgb(126, 135, 130);
+  --gray-tertiary: rgb(147, 155, 150);
+  --orange: rgb(237, 105, 71);
 }
 
 /* ----------- HEADER ----------- */
@@ -14,32 +22,35 @@ header {
 
 .brand {
   font-weight: 700;
+  font-size: 1.2rem;
 }
 
 .brand-logo {
   display: inline-block;
   transform: rotate(15deg);
   margin-right: 0.3rem;
+  color: var(--orange);
 }
 
 .brand-dot {
   font-weight: 800;
   font-size: 1.3rem;
-  color: rgb(237, 105, 71);
+  color: var(--orange);
 }
 
 .label {
-  font-size: 0.8rem;
+  font-size: 0.7rem;
   text-transform: uppercase;
+  color: var(--gray-secondary)
 }
 
 .status {
   display: inline-block;
   margin-right: 0.5rem;
-  height: 0.6rem;
-  width: 0.6rem;
+  height: 0.5rem;
+  width: 0.5rem;
   border-radius: 0.3rem;
-  background-color: rgb(237, 105, 71);
+  background-color: rgb(39, 185, 124);
 }
 
 /* ----------- HERO ----------- */
@@ -52,7 +63,7 @@ header {
 
 .recall {
   text-transform: uppercase;
-  color: rgb(237, 105, 71);
+  color: var(--orange);
   letter-spacing: 1.1px;
   font-size: 0.9rem;
 }
@@ -65,11 +76,12 @@ h1 {
 }
 
 h1 span {
-  color: rgb(237, 105, 71);
+  color: var(--orange);
 }
 
 .intro{
   width: 70%;
+  color: var(--gray-primary);
 }
 
 .score-card {
@@ -91,6 +103,7 @@ h1 span {
   font-size: 0.8rem;
   width: 110px;
   text-align: center;
+  color: var(--gray-primary);
 }
 
 .score-item strong{
@@ -99,3 +112,42 @@ h1 span {
   font-size: 2rem;
 }
 
+/* ----------- GAME AREA ----------- */
+
+
+/* ----------- FOOTER ----------- */
+
+.footer {
+  display: flex;
+  justify-content: space-between;
+  font-size: 0.8rem;
+  text-transform: uppercase;
+  color: var(--gray-secondary);
+}
+
+.footer-credit b {
+  display: inline-block;
+  margin-left: 0.25rem;
+  color: var(--orange);
+  font-size: 1.1rem;
+}
+
+.footer-links {
+  display: flex;
+  gap: 1rem;
+}
+
+.footer-links a {
+  text-decoration: none;
+  color: var(--gray-primary);
+}
+
+.footer-links a:hover {
+  color: var(--orange);
+}
+
+.footer-links span {
+  display: inline-block;
+  margin-left: 0.25rem;
+  color: var(--orange);
+}
