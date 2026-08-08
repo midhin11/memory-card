@@ -137,10 +137,21 @@ h1 span {
 
 .difficulty-mode > * {
   border: 1px solid transparent;
-  border-radius: 1rem;
-  padding: 0.3rem 0.8rem;
+  border-radius: 1.5rem;
+  padding: 0.6rem 1rem;
   cursor: pointer;
   transition: border 0.5s ease;
+}
+
+.difficulty-mode > * > span {
+  display: inline-block;
+  margin-left: 0.5rem;
+  color: var(--gray-primary);
+}
+
+.selected span {
+  color: var(--orange);
+  font-weight: bold;
 }
 
 .difficulty-mode > *:hover {
@@ -233,6 +244,10 @@ h1 span {
   color: rgb(103, 113, 109);
 }
 
+.label, .recall, .score-item > div, .footer-credit, .footer-ins {
+  font-family: 'DM Mono', Courier, monospace;
+}
+
 /* ----------- FOOTER ----------- */
 
 .footer {
@@ -241,7 +256,8 @@ h1 span {
   font-size: 0.8rem;
   text-transform: uppercase;
   color: var(--gray-secondary);
-  padding: 2.5rem 0 1.5rem 0;
+  padding: 2.5rem 0 0.8rem 0;
+  align-items: flex-end;
 }
 
 .footer-credit b {
@@ -270,4 +286,92 @@ h1 span {
   display: inline-block;
   margin-left: 0.25rem;
   color: var(--orange);
+}
+
+
+@media (max-width: 850px) {
+  body {
+    padding: 0 1.5rem;
+  }
+
+  .hero {
+    padding: 2.2rem 0 1.8rem 0;
+  }
+
+  h1 {
+    font-size: 3rem;
+  }
+
+  .score-card {
+    padding-bottom: 0;
+  }
+
+  .card-grid {
+    grid-template-columns: repeat(4, 2fr);
+  }
+}
+
+@media (max-width: 500px) {
+  body {
+    padding: 0 1.1rem;
+  }
+
+  .brand {
+    width: 100%;
+    text-align: center;
+  }
+
+  .label {
+    display: none;
+  }
+
+  .hero {
+    display: block;
+  }
+
+  .hero-text {
+    text-align: center;
+  }
+
+  h1 {
+    font-size: 3rem;
+  }
+
+  h1 span {
+    display: inline-block;
+    margin-top: 0.7rem;
+  }
+
+  .intro {
+    width: 100%;
+  }
+
+  .score-card {
+    margin-top: 2rem;
+    padding-bottom: 0;
+    justify-content: center;
+  }
+
+  .game-tools {
+    flex-direction: column;
+    gap: 1.2rem;
+    align-items: center;
+  }
+
+  .difficulty-mode {
+    justify-content: center;
+  }
+
+  .card-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .footer {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .footer-links{
+    margin-top: 1rem;
+  }
 }

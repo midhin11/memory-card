@@ -92,19 +92,19 @@ function GameTools({difficulty, handleDifficultyChange}) {
                 <button 
                 className={`easy-mode ${difficulty === "easy" ? "selected" : ""}`}  
                 onClick={() => handleDifficultyChange("easy")}>
-                    Easy
+                    Easy<span>8</span>
                 </button> 
 
                 <button 
                 className={`medium-mode ${difficulty === "medium" ? "selected" : ""}`}  
                 onClick={() => handleDifficultyChange("medium")}>
-                    Medium
+                    Medium<span>12</span>
                 </button> 
                 
                 <button 
                 className={`hard-mode ${difficulty === "hard" ? "selected" : ""}`}  
                 onClick={() => handleDifficultyChange("hard")}>
-                    Hard
+                    Hard<span>16</span>
                 </button> 
             </div>
             <div className="hint">Pick a card. Remember it. Don't repeat it.</div>
