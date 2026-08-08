@@ -156,15 +156,27 @@ h1 span {
 
 .card-grid {
   display: grid;
-  grid-template-columns: repeat(8, 1fr);
   gap: 12px
+}
+
+.cards-easy {
+  grid-template-columns: repeat(4, 1fr);
+}
+
+.cards-medium {
+  grid-template-columns: repeat(6, 1fr);
+}
+
+.cards-hard {
+  grid-template-columns: repeat(8, 1fr);
 }
 
 .memory-card {
   border: none;
   padding: 0;
-  background-color: var(--gray-primary);
+  background-color: transparent;
   cursor: pointer;
+  width: 100%;
   
   transform-origin: bottom left;
   transition: transform 0.4s ease;
@@ -172,6 +184,24 @@ h1 span {
 
 .memory-card:hover {
   transform: translateY(-8px) rotate(-1deg);
+}
+
+.card-art {
+  width: 100%;
+  aspect-ratio: 1 / 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.card-art img {
+  width: 80%;
+  height: 80%;
+  object-fit: contain;
+}
+
+.card-caption {
+  padding: 8px 4px;
 }
 
 /* ----------- FOOTER ----------- */
