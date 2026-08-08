@@ -1,4 +1,4 @@
-export default function Hero() {
+export default function Hero({currScore}) {
   return(
     <section className="hero">
       <div className='hero-text'>
@@ -9,12 +9,12 @@ export default function Hero() {
       <div className='score-card'>
         <div className='score-item'>
           <div>Current Score</div>
-          <strong>00</strong>
+          <strong>{currScore}</strong>
         </div>
         <div className="score-seperator"></div>
         <div className='score-item'>
           <div>Best Score</div>
-          <strong>00</strong>
+          <strong>0</strong>
         </div>
       </div>
     </section>

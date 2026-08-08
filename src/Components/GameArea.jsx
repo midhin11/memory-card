@@ -3,16 +3,30 @@ import { useState, useEffect } from "react";
 let accents = ["#F5B84B", "#F2876D", "#72C5B6", "#8795E8", "#D79ACB", "#E5A85B", "#77B9D7", "#B6C86A"]
 let cardCounts = {easy: 8, medium: 12, hard:16}
 
-export default function GameArea() {
+export default function GameArea({currScore, setCurrScore}) {
     const [difficulty, setDifficulty] = useState("easy")
     const [cards, setCards] = useState([])
     const [gameCards, setGameCards] = useState([])
-
+    const [clicked, setClicked] = useState([])
 
     function handleDifficultyChange(newDifficulty) {
         setDifficulty(newDifficulty)
+        
         const count = cardCounts[newDifficulty]
         setGameCards(cards.slice(0, count))
+
+        setClicked([])
+    }
+
+    function handleCardClick(id) {
+        setGameCards(shuffle(gameCards))
+        if (clicked.includes(id)){
+            setClicked([])
+            setCurrScore(0)
+            return
+        } 
+        setClicked([...clicked, id])
+        setCurrScore(currScore + 1)
     }
 
     useEffect(() => {
@@ -44,7 +58,7 @@ export default function GameArea() {
         <section className="game-area">
             <GameTools difficulty={difficulty} handleDifficultyChange={handleDifficultyChange}/>
             <CardGrid difficulty={difficulty} cards={cards}
-            gameCards={gameCards} setGameCards={setGameCards}/>
+            gameCards={gameCards} setGameCards={setGameCards} handleCardClick={handleCardClick}/>
         </section>
     )
 }
@@ -76,7 +90,7 @@ function GameTools({difficulty, handleDifficultyChange}) {
     )
 }
 
-function CardGrid({ difficulty, gameCards, setGameCards }) {
+function CardGrid({ difficulty, gameCards, handleCardClick }) {
     let cardClass = "cards-easy"
     if (difficulty === "medium") {cardClass = "cards-medium"}
     if (difficulty === "hard") {cardClass = "cards-hard"}
@@ -84,7 +98,7 @@ function CardGrid({ difficulty, gameCards, setGameCards }) {
     let cardstoDisplay  = gameCards.map((card) => (
         <button key={card.id} 
         className="memory-card" 
-        onClick={() => setGameCards(shuffle(gameCards))}>
+        onClick={() => handleCardClick(card.id)}>
             <div className="card-art" style={{backgroundColor: card.accent}}>
                 <img src={card.image} alt={card.name} />
             </div>
