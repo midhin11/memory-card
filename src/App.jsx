@@ -6,7 +6,7 @@ import Modal from "./Components/Modal.jsx"
 import "./App.css"
 import { useState } from "react"
 
-export default function GamePage() {
+export default function App() {
   const [gameState, setGameState] = useState("playing")
   const [difficulty, setDifficulty] = useState("easy")
   const [currScore, setCurrScore] = useState(0)
@@ -18,7 +18,7 @@ export default function GamePage() {
 
   return(
     <div className="game-page">
-      <Header/>
+      <Header/> 
       <Hero 
         difficulty={difficulty} 
         currScore={currScore} 

@@ -41,7 +41,6 @@ export default function GameArea({difficulty, setDifficulty, currScore, setCurrS
                 [difficulty]: nextScore
             })
         }  
-
         const nextClicked = [...clicked, id]
         if (nextClicked.length === cardCounts[difficulty]){
             setGameState("win")
