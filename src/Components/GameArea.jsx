@@ -87,7 +87,8 @@ export default function GameArea({difficulty, setDifficulty, currScore, setCurrS
             <CardGrid 
                 difficulty={difficulty} 
                 cards={cards} 
-                gameCards={gameCards} setGameCards={setGameCards} handleCardClick={handleCardClick} 
+                gameCards={gameCards} setGameCards={setGameCards} 
+                handleCardClick={handleCardClick} 
                 isLoading={isLoading} error={error}/>
         </section>
     )

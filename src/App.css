@@ -13,6 +13,12 @@ body {
   --border-seperator: rgb(213, 214, 206);
 }
 
+.game-page {
+  display: flex;
+  flex-direction: column;
+  min-height: 99vh;
+}
+
 /* ----------- HEADER ----------- */
 
 header {
@@ -133,6 +139,7 @@ h1 span {
 
 .game-area {
   padding-top: 1.25rem;
+  flex-grow: 1;
 }
 
 .game-tools {
