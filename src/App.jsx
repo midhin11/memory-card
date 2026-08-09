@@ -10,10 +10,9 @@ export default function App() {
   const [gameState, setGameState] = useState("playing")
   const [difficulty, setDifficulty] = useState("easy")
   const [currScore, setCurrScore] = useState(0)
-  const [bestScore, setBestScore] = useState({
-    easy: 0,
-    medium: 0,
-    hard: 0
+  const [bestScore, setBestScore] = useState(() => {
+    const saved = localStorage.getItem("bestscore")
+    return saved ? JSON.parse(saved) : {easy:0, medium:0, hard:0}
   })
 
   return(

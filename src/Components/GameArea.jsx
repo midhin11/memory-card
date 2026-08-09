@@ -49,6 +49,10 @@ export default function GameArea({difficulty, setDifficulty, currScore, setCurrS
     }
 
     useEffect(() => {
+        localStorage.setItem("bestscore", JSON.stringify(bestScore));
+    }, [bestScore])
+
+    useEffect(() => {
         async function fetchData() {
             try {
                 const response = await fetch("https://pokeapi.co/api/v2/pokemon?limit=16")
