@@ -189,6 +189,7 @@ h1 span {
 .card-grid {
   display: grid;
   gap: 1rem;
+  overflow-anchor: none;
 }
 
 .cards-easy {
